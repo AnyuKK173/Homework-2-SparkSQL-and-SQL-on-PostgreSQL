@@ -1,0 +1,8 @@
+SELECT
+  to_char(last_build_date, 'Dy, DD Mon YYYY HH24:MI:SS "GMT"') AS "lastBuildDate",
+  category,
+  title,
+  link
+FROM news.google_news_feed
+ORDER BY pub_date DESC
+LIMIT 300;

@@ -1,0 +1,17 @@
+CREATE EXTENSION IF NOT EXISTS pg_trgm;
+
+CREATE INDEX IF NOT EXISTS idx_gnews_title_trgm
+ON news.google_news_feed USING GIN (title gin_trgm_ops);
+
+DELETE FROM news.google_news_feed
+WHERE title ILIKE '%NFL%';
+
+SELECT COUNT(*) AS nfl_rows_remaining
+FROM news.google_news_feed
+WHERE title ILIKE '%NFL%';
+
+SELECT id, category, pub_date, title
+FROM news.google_news_feed
+WHERE title ILIKE '%NFL%'
+ORDER BY pub_date DESC NULLS LAST, id DESC
+LIMIT 20;

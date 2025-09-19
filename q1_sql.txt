@@ -1,0 +1,16 @@
+
+
+CREATE TABLE IF NOT EXISTS news.google_news_feed (
+  id               BIGSERIAL PRIMARY KEY,
+  last_build_date  TIMESTAMP,
+  title            VARCHAR(500) NOT NULL,
+  link             TEXT NOT NULL UNIQUE,
+  pub_date         TIMESTAMP,
+  description      TEXT,
+  source           VARCHAR(255),
+  created_at       TIMESTAMP NOT NULL DEFAULT NOW()
+);
+
+
+CREATE INDEX IF NOT EXISTS idx_gnews_pubdate
+  ON news.google_news_feed (pub_date DESC);

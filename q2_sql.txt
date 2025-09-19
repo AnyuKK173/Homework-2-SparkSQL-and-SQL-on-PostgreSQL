@@ -1,0 +1,16 @@
+
+
+SELECT 
+    id,
+    last_build_date,
+    title,
+    link,
+    pub_date,
+    description,
+    source,
+    created_at
+FROM 
+    news.google_news_feed
+ORDER BY 
+    RANDOM()
+LIMIT 5;
